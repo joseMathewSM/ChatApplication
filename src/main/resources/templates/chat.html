@@ -1,0 +1,36 @@
+<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-spring4-4.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <title>Chat</title>
+    </head>
+    <body>
+    <form th:action="@{/chat}" th:object="${chatForm}" method="post" >
+        <label for="messageText">Message Text:</label>
+        <input id="messageText" type="text" th:field="*{messageText}">
+        <label for="messageType">Message Type: </label>
+        <select id="messageType" th:field="*{messageType}">
+            <option th:each="op : ${allOpt}"
+                    th:value="${op}"
+                    th:text="${op}">Say</option>
+        </select>
+        <input type="submit">
+    </form>
+
+    <div>
+        <table th:each="msg : ${chatMessage}">
+            <tr>
+                <td th:text="${msg.username}">:- </td>
+                <td th:text="${msg.messageText}"></td>
+            </tr>
+        </table>
+    </div>
+
+
+
+
+
+    </body>
+</html>
+
+
+
